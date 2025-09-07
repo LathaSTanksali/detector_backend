@@ -3,6 +3,7 @@ import pickle
 from flask_cors import CORS
 import numpy as np
 from collections import Counter
+import os
 
 app = Flask(__name__)
 CORS(app)
@@ -65,4 +66,6 @@ def get_stats():
     })
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    # Render provides PORT as env variable, default to 5000 locally
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
